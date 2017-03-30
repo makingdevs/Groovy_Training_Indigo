@@ -3,13 +3,12 @@ def cuadrado(n, block){
     block(i)
 }
 
-//cuadrado(20, { if(it%2 == 1) println "Cuadrado de ${it} = ${it*it}" })
-
-//cuadrado(20) { if(it%2 == 1) println "Cuadrado de ${it} = ${it*it}" }
-//cuadrado(20) { 
-//  if(it%2 == 1) 
-//    println "Cuadrado de ${it} = ${it*it}" 
-//}
+cuadrado(20, { if(it%2 == 1) println "Cuadrado de ${it} = ${it*it}" }) 
+cuadrado(20) { if(it%2 == 1) println "Cuadrado de ${it} = ${it*it}" }
+cuadrado(20) { 
+  if(it%2 == 1) 
+    println "Cuadrado de ${it} = ${it*it}" 
+}
 
 cuadrado(20) { number -> 
 	if(number%2 == 1) 
