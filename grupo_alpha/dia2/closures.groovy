@@ -1,4 +1,3 @@
-
 def discriminante(a,b,c){
   (b*b) - (4*a*c)
 }
