@@ -1,6 +1,15 @@
 @GrabConfig(systemClassLoader=true)
+@Grapes([
+    @Grab(group='com.zaxxer', module='HikariCP', version='2.6.1'),
 @Grab(group='mysql', module='mysql-connector-java', version='5.1.6')
+])
 import groovy.sql.Sql
+import com.zaxxer.hikari.HikariDataSource
+
+HikariDataSource ds = new HikariDataSource();
+ds.setJdbcUrl("jdbc:mysql://localhost:3306/issue_tracker");
+ds.setUsername("makingdevs");
+ds.setPassword("makingdevs");
 
 db = [
   username: "makingdevs",
@@ -9,7 +18,8 @@ db = [
   driver: "com.mysql.jdbc.Driver"
 ]
 
-sql = Sql.newInstance(db.url, db.username, db.password, db.driver)
+//sql = Sql.newInstance(db.url, db.username, db.password, db.driver)
+sql = Sql.newInstance(ds)
 
 sql.execute """
 create table if not exists issue(
