@@ -16,4 +16,11 @@ frame.contentPane.add msgLabel
 
 button.addActionListener({ println "Hola mundo" } as ActionListener)
 
+displayMouseLocation = { positionLabel.text = "${it.x}, ${it.y}" }
+
+frame.addMouseMotionListener(displayMouseLocation as MouseMotionListener)
+frame.addMouseListener(displayMouseLocation as MouseListener)
+
+
+
 frame.show()
