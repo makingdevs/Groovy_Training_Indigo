@@ -1,0 +1,17 @@
+groovy:000> l = ["Uno","Dos","Tres","Cuatro"]
+===> [Uno, Dos, Tres, Cuatro]
+groovy:000> l.collect { it.size() }
+===> [3, 3, 4, 6]
+groovy:000> l.collect { it.size() }.sum()
+===> 16
+groovy:000> l*.size().sum()
+===> 16
+groovy:000> l*.size()
+===> [3, 3, 4, 6]
+groovy:000> clazzes = [String, List, File]
+===> [class java.lang.String, interface java.util.List, class java.io.File]
+groovy:000> clazzes.collect{ it.package }.collect{ it.name }
+===> [java.lang, java.util, java.io]
+groovy:000> clazzes*.package*.name
+===> [java.lang, java.util, java.io]
+
