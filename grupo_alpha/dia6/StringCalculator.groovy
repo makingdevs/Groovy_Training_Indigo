@@ -6,7 +6,7 @@ int add( String values ) {
    else {
     def separator = ","
     if( values.contains(separator) ) {
-      values.split(separator).collect {Integer.parseInt( it )}.sum()    
+      values.split(separator).collect { it.toInteger() }.sum()    
     } else {
       Integer.parseInt( values )
     }
