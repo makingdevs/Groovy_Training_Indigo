@@ -1,14 +1,7 @@
-class StringCalculator {
-  
-int add( String values ) {
-   if ( values == "" )
-    0
-   else {
-    def separator = ","
+  class StringCalculator {
     
-      values.split(separator).collect { it.toInteger() }.sum()    
-    
+  int add( String values ) {
+    values == "" ? 0 : values.split(",").collect { it.toInteger() }.sum()     
   }
-}
 
 }
