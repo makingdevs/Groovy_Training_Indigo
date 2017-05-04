@@ -13,7 +13,7 @@ class MiPrimerPrueba extends GroovyTestCase {
   }
 
   void testFail(){
-    shouldFail(java.sql.SQLException) {
+    shouldFail(IllegalArgumentException) {
       println "Hola"
       throw new IllegalArgumentException("Error de parámetro")
     }
