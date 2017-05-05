@@ -36,13 +36,14 @@ class CalculatorTest extends GroovyTestCase {
   void testSumOperationWithCacheAndMocks(){
     def memoryMock = new MockFor( Memory )
     def cache = [:]
-    memoryMock.demand.findOperation { String op, values -> null}
-    memoryMock.demand.saveOperation { String op, result, values ->  }
-    memoryMock.demand.findOperation { String op, values -> null}
-    memoryMock.demand.saveOperation { String op, result, values ->  }
-    memoryMock.demand.findOperation { String op, values -> 5}
-    memoryMock.demand.findOperation { String op, values -> 5}
-    
+    memoryMock.demand.with {
+      findOperation { String op, values -> null}
+      saveOperation { String op, result, values ->  }
+      findOperation { String op, values -> null}
+      saveOperation { String op, result, values ->  }
+      findOperation { String op, values -> 5}
+      findOperation { String op, values -> 5}
+    }
     memoryMock.use {
       Calculator c = new Calculator()
       assert c.operation("+", 2, 3) == 5
