@@ -1,8 +1,11 @@
 class Memory {
-  def saveOperation(operator, value1, value2, result){
+  def saveOperation(String operator, result, int... values){
     new RuntimeException("Trono")
   }
-  def getOperation(String operator, Integer value1, Integer value2){
+  def findOperation(String operator, int... values){
     new RuntimeException("Trono")
+  }
+  def damnTheFuckingStub(){
+    "Message unreachable..."
   }
 }

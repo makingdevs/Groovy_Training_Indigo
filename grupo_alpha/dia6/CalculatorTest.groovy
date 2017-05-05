@@ -4,14 +4,13 @@ class CalculatorTest extends GroovyTestCase {
 
   void testSumOperation(){
     
-    def memoryStub = new StubFor(Memory)
+    def memoryStub = new StubFor( Memory )
 
-    memoryStub.demand.getOperation() { }
-    memoryStub.demand.saveOperation() {  }
+    memoryStub.demand.damnTheFuckingStub { "Message Reached :) !!!" }
 
     memoryStub.use {
       Calculator c = new Calculator()
-      assert c.operation('+', 2, 3) == 5  
+      assert c.operation("+", 2, 3) == "Message Reached :) !!!"
     }
     
     memoryStub.expect.verify()
