@@ -6,11 +6,12 @@ class CalculatorTest extends GroovyTestCase {
     
     def memoryStub = new StubFor( Memory )
 
-    memoryStub.demand.damnTheFuckingStub { "Message Reached :) !!!" }
+    memoryStub.demand.findOperation { String op, values -> null }
+    memoryStub.demand.saveOperation { String op, result, values -> }
 
     memoryStub.use {
       Calculator c = new Calculator()
-      assert c.operation("+", 2, 3) == "Message Reached :) !!!"
+      assert c.operation("+", 2, 3) == 5
     }
     
     memoryStub.expect.verify()
