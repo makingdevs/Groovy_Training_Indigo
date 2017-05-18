@@ -22,9 +22,10 @@ public class UserStoryServiceImpl implements UserStoryService {
   UserStoryRepository userStoryRepository;
 
   @Override
-  public void createUserStory(UserStory userStory) {
+  public void createUserStory(UserStory userStory, Project project) {
     userStory.setDateCreated(new Date());
     userStory.setLastUpdated(new Date());
+    userStory.setProject(project);
     userStoryRepository.save(userStory);
   }
 
