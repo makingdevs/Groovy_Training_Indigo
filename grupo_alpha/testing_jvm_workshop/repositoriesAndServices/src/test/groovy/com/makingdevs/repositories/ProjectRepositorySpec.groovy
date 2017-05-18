@@ -16,6 +16,16 @@ class ProjectRepositorySpec extends Specification {
   @Autowired
   JdbcTemplate jdbcTemplate
 
+  def "We have already projects"(){
+    when:
+    List<Project> projects = projectRepository.findAll()
+    projects.each{ p ->
+      println p
+    }
+    then:
+    !projects.isEmpty()
+  }
+
   @Unroll
   def "Create a new project"(){
     given: "a new project"
