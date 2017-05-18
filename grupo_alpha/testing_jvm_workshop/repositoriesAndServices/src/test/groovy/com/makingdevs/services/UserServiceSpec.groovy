@@ -34,10 +34,10 @@ class UserServiceSpec extends Specification {
       'makingdevs',
       'com.mysql.jdbc.Driver')
 
-  @Unroll
+  @Unroll("Add new US(#description, #priority, #effort) and add it to project")
   def "Add a new user story to an existent project"(){
     given:"An existent project"
-      Project p = projectRepository.findOne(id)
+      Project p = projectRepository.findOne(id as Long)
       def userStoriesInitial = userStoryRepository.findAllByProject(p)
 
     and: "a new user story"
