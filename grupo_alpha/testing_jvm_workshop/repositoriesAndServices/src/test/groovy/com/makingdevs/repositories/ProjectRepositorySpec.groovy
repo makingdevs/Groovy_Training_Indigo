@@ -1,5 +1,6 @@
 package com.makingdevs.repositories
 
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.makingdevs.model.Project
@@ -7,11 +8,13 @@ import com.makingdevs.config.*
 import spock.lang.*
 import groovy.transform.CompileStatic
 
-@ContextConfiguration(classes = [ PersistenceConfig ])
+@ContextConfiguration(classes = [ PersistenceConfig, TestPersistenceConfig ])
 class ProjectRepositorySpec extends Specification {
 
   @Autowired
   ProjectRepository projectRepository
+  @Autowired
+  JdbcTemplate jdbcTemplate
 
   @Unroll
   def "Create a new project"(){
@@ -22,10 +25,10 @@ class ProjectRepositorySpec extends Specification {
       description:description,
       dateCreated: dateCreated,
       lastUpdated: lastUpdated)
-    def totalProjects = projectRepository.count()
+    def totalProjects = jdbcTemplate.queryForObject("select count(*) c from project", Integer)
     when: "we try to save"
     projectRepository.save(p)
-    def newTotalProjects = projectRepository.count()
+    def newTotalProjects = jdbcTemplate.queryForObject("select count(*) c from project", Integer)
     then: "we have one more project"
     totalProjects + 1 == newTotalProjects
     where:
