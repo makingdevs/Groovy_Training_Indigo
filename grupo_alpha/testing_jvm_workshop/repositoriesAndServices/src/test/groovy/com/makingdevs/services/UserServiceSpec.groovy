@@ -35,12 +35,13 @@ class UserServiceSpec extends Specification {
 
     when:"we try to add the US to this project"
       userStoryService.createUserStory(us, p)
-      Project pModified = projectRepository.findOne(1L)
       def userStoriesFinal = userStoryRepository.findAllByProject(p)
 
     then:"the project should have one more user story"
       userStoriesFinal.size() == userStoriesInitial.size() + 1
       userStoriesFinal.any { u -> u.description == "uniq desc" }
+      us.project == p
+      userStoriesFinal.every { u -> u.project.id == p.id }
   }
 
   def "Add a new user story to a new project"(){}
